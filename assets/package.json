@@ -1,62 +1,39 @@
 {
-  "repository": {},
-  "description": " ",
-  "license": "MIT",
-  "scripts": {
-    "deploy": "webpack --mode production",
-    "watch": "webpack --mode development --watch",
-    "test": "jest",
-    "eslint": "eslint js/**/*.js __tests__/**/*.js"
-  },
-  "jest": {
-    "moduleFileExtensions": ["js", "jsx"],
-    "moduleDirectories": ["node_modules", "js", "css"],
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
-      "^config$": "<rootDir>/configs/app-config.js"
-    }
-  },
-  "browserslist": [
-    "last 2 Chrome versions",
-    "last 2 Firefox versions",
-    "last 1 Safari versions"
-  ],
+  "name": "assets",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "@tailwindcss/postcss7-compat": "^2.0.3",
-    "autoprefixer": "^9",
-    "css-loader": "^5.0.2",
-    "postcss": "^7",
-    "postcss-modules": "3.2.2",
-    "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-modal": "^3.12.1",
-    "react-redux": "^7.2.2",
-    "react-router-dom": "^5.2.0",
-    "react-select": "^4.0.2",
-    "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "5.0.0",
+    "tailwindcss": "^3.0.18",
+    "web-vitals": "^2.1.0"
   },
-  "devDependencies": {
-    "@babel/core": "^7.0.0-0",
-    "@babel/preset-env": "^7.12.13",
-    "@babel/preset-react": "^7.12.13",
-    "babel-loader": "^8.2.2",
-    "copy-webpack-plugin": "^7.0.0",
-    "eslint": "^7.19.0",
-    "eslint-plugin-jest": "^24.1.3",
-    "eslint-plugin-react": "^7.22.0",
-    "hard-source-webpack-plugin": "^0.13.1",
-    "jest": "^26.6.3",
-    "mini-css-extract-plugin": "^1.3.6",
-    "node-sass": "^4.13.1",
-    "optimize-css-assets-webpack-plugin": "^5.0.4",
-    "postcss-loader": "^5.0.0",
-    "redux-mock-store": "^1.5.4",
-    "style-loader": "^2.0.0",
-    "webpack": "^5.21.2",
-    "webpack-cli": "^4.5.0"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
