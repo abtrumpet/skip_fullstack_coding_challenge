@@ -59,6 +59,7 @@ RUN . /opt/asdf-vm/asdf.sh && \
   mix deps.get && \
   cd assets && \
   yarn && \
+  yarn run tailwindcss -i ./src/input.css -o ./build/output.css && \
   yarn build
 
 CMD . /opt/asdf-vm/asdf.sh && \
