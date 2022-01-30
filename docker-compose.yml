@@ -1,6 +1,6 @@
 version: "3"
 services:
-  skip:
+  pop:
     build: .
     ports:
       - "4000:4000"

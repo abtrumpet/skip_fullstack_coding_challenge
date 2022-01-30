@@ -4,6 +4,7 @@ defmodule Pop.Application do
   @moduledoc false
 
   use Application
+  alias Pop.Servers.Fahrenheit
 
   def start(_type, _args) do
     children = [
@@ -12,9 +13,11 @@ defmodule Pop.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Pop.PubSub},
       # Start the Endpoint (http/https)
-      PopWeb.Endpoint
+      PopWeb.Endpoint,
       # Start a worker by calling: Pop.Worker.start_link(arg)
       # {Pop.Worker, arg}
+      Fahrenheit 
+      # Our "Fahrenheit" server
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
