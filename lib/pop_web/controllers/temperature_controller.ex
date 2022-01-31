@@ -3,11 +3,13 @@ defmodule PopWeb.Controllers.TemperatureController do
   alias Pop.Servers.Fahrenheit
 
   def index(conn, _) do
-    Fahrenheit.put_temp(Fahrenheit, 35)
-    Fahrenheit.put_temp(Fahrenheit, 451.34)
     conn
     |> json(%{
       temps: Fahrenheit.get_temps(Fahrenheit)
     })
+  end
+
+  def create(conn, stuff) do
+
   end
 end

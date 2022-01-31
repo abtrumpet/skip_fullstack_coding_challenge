@@ -16,6 +16,7 @@ defmodule PopWeb.Router do
   scope "/api", PopWeb do
     pipe_through :api
     get("/temperature", Controllers.TemperatureController, :index)
+    post("/temperature", Controllers.TemperatureController, :create)
   end
 
   scope "/", PopWeb do

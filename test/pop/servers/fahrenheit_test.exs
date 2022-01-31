@@ -12,62 +12,66 @@ defmodule Pop.Servers.FahrenheitTest do
   end
 
   describe "get_temps/1" do
+    setup [:reset]
+
     test "returns init list of temperatures" do
-      {:ok, server} = Fahrenheit.start_link(nil) 
-      assert Fahrenheit.get_temps(server) == []
+      assert Fahrenheit.get_temps(Fahrenheit) == []
     end
 
     test "returns list of temperatures" do
-      {:ok, server} = Fahrenheit.start_link(nil)
-      Fahrenheit.put_temp(server, 1.0)
-      Fahrenheit.put_temp(server, 2)
-      assert Fahrenheit.get_temps(server) == [2, 1]
+      Fahrenheit.put_temp(Fahrenheit, 1.0)
+      Fahrenheit.put_temp(Fahrenheit, 2)
+      assert Fahrenheit.get_temps(Fahrenheit) == [2, 1]
+    end
+
+    defp reset(_) do
+      Fahrenheit.reset(Fahrenheit)
     end
   end
 
   describe "put_temp/2" do
+    setup [:reset]
+
     test "inserts temp" do
-      {:ok, server} = Fahrenheit.start_link(nil)
-      assert Fahrenheit.get_temps(server) == []
-      Fahrenheit.put_temp(server, 1)
-      assert Fahrenheit.get_temps(server) == [1]
+      assert Fahrenheit.get_temps(Fahrenheit) == []
+      Fahrenheit.put_temp(Fahrenheit, 1)
+      assert Fahrenheit.get_temps(Fahrenheit) == [1]
     end
 
     test "converts temp to int before insert" do
-      {:ok, server} = Fahrenheit.start_link(nil)
-      assert Fahrenheit.get_temps(server) == []
-      Fahrenheit.put_temp(server, 1.0)
-      assert Fahrenheit.get_temps(server) == [1]
+      assert Fahrenheit.get_temps(Fahrenheit) == []
+      Fahrenheit.put_temp(Fahrenheit, 1.0)
+      assert Fahrenheit.get_temps(Fahrenheit) == [1]
     end
 
     test "does not duplicate temp" do
-      {:ok, server} = Fahrenheit.start_link(nil)
-      assert Fahrenheit.get_temps(server) == []
-      Fahrenheit.put_temp(server, 1)
-      Fahrenheit.put_temp(server, 1)
-      assert Fahrenheit.get_temps(server) == [1]
+      assert Fahrenheit.get_temps(Fahrenheit) == []
+      Fahrenheit.put_temp(Fahrenheit, 1)
+      Fahrenheit.put_temp(Fahrenheit, 1)
+      assert Fahrenheit.get_temps(Fahrenheit) == [1]
     end
 
     test "does not duplicate temp when given float" do
-      {:ok, server} = Fahrenheit.start_link(nil)
-      assert Fahrenheit.get_temps(server) == []
-      Fahrenheit.put_temp(server, 1)
-      Fahrenheit.put_temp(server, 1.0)
-      assert Fahrenheit.get_temps(server) == [1]
+      assert Fahrenheit.get_temps(Fahrenheit) == []
+      Fahrenheit.put_temp(Fahrenheit, 1)
+      Fahrenheit.put_temp(Fahrenheit, 1.0)
+      assert Fahrenheit.get_temps(Fahrenheit) == [1]
     end
 
     test "rounds temp down" do
-      {:ok, server} = Fahrenheit.start_link(nil)
-      assert Fahrenheit.get_temps(server) == []
-      Fahrenheit.put_temp(server, 1.4)
-      assert Fahrenheit.get_temps(server) == [1]
+      assert Fahrenheit.get_temps(Fahrenheit) == []
+      Fahrenheit.put_temp(Fahrenheit, 1.4)
+      assert Fahrenheit.get_temps(Fahrenheit) == [1]
     end
 
     test "rounds temp up" do
-      {:ok, server} = Fahrenheit.start_link(nil)
-      assert Fahrenheit.get_temps(server) == []
-      Fahrenheit.put_temp(server, 1.8)
-      assert Fahrenheit.get_temps(server) == [2]
+      assert Fahrenheit.get_temps(Fahrenheit) == []
+      Fahrenheit.put_temp(Fahrenheit, 1.8)
+      assert Fahrenheit.get_temps(Fahrenheit) == [2]
+    end
+
+    defp reset(_) do
+      Fahrenheit.reset(Fahrenheit)
     end
   end
 end

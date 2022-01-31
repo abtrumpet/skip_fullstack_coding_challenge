@@ -20,16 +20,25 @@ defmodule Pop.Servers.Fahrenheit do
     end
   end
 
+  @impl true
+  def handle_cast({:reset}, temps) do
+    {:noreply, []}
+  end
+
   def start_link(_opts) do
     GenServer.start_link(__MODULE__, init(nil), name: __MODULE__)
   end
 
-  def get_temps(server) do
+  def get_temps(server \\ __MODULE__) do
     GenServer.call(server, :get_temps)
   end
 
-  def put_temp(server, temp) do
+  def put_temp(server \\ __MODULE__, temp) do
     GenServer.cast(server, {:put_temp, temp})
+  end
+
+  def reset(server \\ __MODULE__) do
+    GenServer.cast(server, {:reset})
   end
 
 end
