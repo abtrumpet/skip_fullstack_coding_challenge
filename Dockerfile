@@ -55,13 +55,14 @@ RUN chown -R pop /home/pop && \
 USER pop
 
 RUN . /opt/asdf-vm/asdf.sh && \
-  mix local.hex --force && \
-  mix deps.get && \
   cd assets && \
   yarn && \
   yarn run tailwindcss -i ./src/input.css -o ./build/output.css && \
   yarn build
 
 CMD . /opt/asdf-vm/asdf.sh && \
+  mix local.hex --force && \
+  mix local.rebar --force && \
+  mix deps.get && \
   mix phx.server
 

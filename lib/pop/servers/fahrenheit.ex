@@ -21,7 +21,7 @@ defmodule Pop.Servers.Fahrenheit do
   end
 
   @impl true
-  def handle_cast({:reset}, temps) do
+` def handle_cast({:reset}, _temps) do
     {:noreply, []}
   end
 
