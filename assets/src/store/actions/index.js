@@ -8,7 +8,9 @@ import {
   POST_TEMP_FAILURE,
 
   ADD_TEMP,
-  SET_TEMPS,
+  SET_F_TEMPS,
+  SET_C_TEMPS,
+  SET_K_TEMPS,
 
   SET_ERROR,
   CLEAR_ERROR,
@@ -48,8 +50,18 @@ export const addTemp = ({ temp }) => ({
   temp,
 });
 
-export const setTemps = ({ temps }) => ({
-  type: SET_TEMPS,
+export const setFTemps = ({ temps }) => ({
+  type: SET_F_TEMPS,
+  temps,
+});
+
+export const setCTemps = ({ temps }) => ({
+  type: SET_C_TEMPS,
+  temps,
+});
+
+export const setKTemps = ({ temps }) => ({
+  type: SET_K_TEMPS,
   temps,
 });
 

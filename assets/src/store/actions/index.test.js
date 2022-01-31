@@ -8,7 +8,9 @@ import {
   postTempFailure,
 
   addTemp,
-  setTemps,
+  setFTemps,
+  setCTemps,
+  setKTemps,
 
   setError,
   clearError,
@@ -63,9 +65,23 @@ describe("actions", () => {
     });
   });
 
-  test("setTemps", () => {
-    expect(setTemps({ temps: [1,2,3] })).toEqual({
-      type: "SET_TEMPS",
+  test("setFTemps", () => {
+    expect(setFTemps({ temps: [1,2,3] })).toEqual({
+      type: "SET_F_TEMPS",
+      temps: [1,2,3],
+    });
+  });
+
+  test("setCTemps", () => {
+    expect(setCTemps({ temps: [1,2,3] })).toEqual({
+      type: "SET_C_TEMPS",
+      temps: [1,2,3],
+    });
+  });
+
+  test("setKTemps", () => {
+    expect(setKTemps({ temps: [1,2,3] })).toEqual({
+      type: "SET_K_TEMPS",
       temps: [1,2,3],
     });
   });

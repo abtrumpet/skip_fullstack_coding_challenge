@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TempsReducerRecord it matches snapshot 1`] = `
+Immutable.Record {
+  "fahrenheitTemps": Immutable.List [],
+  "celsiusTemps": Immutable.List [],
+  "kelvinTemps": Immutable.List [],
+  "isFetching": false,
+  "isPosting": false,
+}
+`;
+
+exports[`tempsReducerInitialState it matches snapshot 1`] = `
+Object {
+  "celsiusTemps": Immutable.List [],
+  "fahrenheitTemps": Immutable.List [],
+  "isFetching": false,
+  "isPosting": false,
+  "kelvinTemps": Immutable.List [],
+}
+`;

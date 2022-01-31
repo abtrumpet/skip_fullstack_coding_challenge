@@ -6,7 +6,9 @@ import {
   POST_TEMP_SUCCESS,
   POST_TEMP_FAILURE,
   ADD_TEMP,
-  SET_TEMPS,
+  SET_F_TEMPS,
+  SET_C_TEMPS,
+  SET_K_TEMPS,
   SET_ERROR,
   CLEAR_ERROR
 } from "./index";
@@ -40,8 +42,16 @@ describe("pedantic types", () => {
     expect(ADD_TEMP).toEqual("ADD_TEMP");
   });
 
-  test("SET_TEMPS", () => {
-    expect(SET_TEMPS).toEqual("SET_TEMPS");
+  test("SET_F_TEMPS", () => {
+    expect(SET_F_TEMPS).toEqual("SET_F_TEMPS");
+  });
+
+  test("SET_C_TEMPS", () => {
+    expect(SET_C_TEMPS).toEqual("SET_C_TEMPS");
+  });
+
+  test("SET_K_TEMPS", () => {
+    expect(SET_K_TEMPS).toEqual("SET_K_TEMPS");
   });
 
   test("SET_ERROR", () => {
