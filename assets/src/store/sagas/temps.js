@@ -1,14 +1,20 @@
-import { take, put, call } from "redux-saga/effects";
+import { take, put, call, select } from "redux-saga/effects";
 import { List } from "immutable";
 import { get, post } from "axios";
 
 import {
   fetchTempsSuccess,
   fetchTempsFailure,
+  postTempSuccess,
+  postTempFailure,
   setFTemps,
   setCTemps,
   setKTemps,
 } from "../actions";
+
+import {
+  getFTemps
+} from "../selectors/temps";
 
 import { convert } from "../../conversions";
 
@@ -42,6 +48,9 @@ function* fetchTempsSuccessSaga() {
     const cTemps = temps.map(t => convert(t, "celsius"));
     const kTemps = temps.map(t => convert(t, "kelvin"));
 
+    /**
+     * Update celsius, kelvin table here
+     */
     yield put(setCTemps(List(cTemps)));
     yield put(setKTemps(List(kTemps)));
   }
@@ -49,7 +58,26 @@ function* fetchTempsSuccessSaga() {
 
 function* addTempSaga() {
   while (true) {
-    yield take(ADD_TEMP);
+    try {
+      const { temp } = yield take(ADD_TEMP);
+
+      yield call(post, ["//localhost:4000/api/temperature", { temp }]);
+
+      yield put(postTempSuccess({}));
+
+      const temps = yield select(getFTemps);
+
+      /**
+       * Update celsius, kelvin table here
+       **/
+      const cTemps = temps.map(t => convert(t, "celsius"));
+      const kTemps = temps.map(t => convert(t, "kelvin"));
+
+      yield put(setCTemps(List(cTemps)));
+      yield put(setKTemps(List(kTemps)));
+    } catch (error) {
+      yield put(postTempFailure({error}));
+    }
   }
 }
 
