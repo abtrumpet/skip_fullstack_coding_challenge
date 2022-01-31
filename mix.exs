@@ -39,7 +39,8 @@ defmodule Pop.MixProject do
       {:phoenix_html, "~> 2.11"},
       {:plug_cowboy, "~> 2.0"},
       {:telemetry_metrics, "~> 0.4"},
-      {:telemetry_poller, "~> 0.4"}
+      {:telemetry_poller, "~> 0.4"},
+      {:corsica, "~> 1.0"}
     ]
   end
 

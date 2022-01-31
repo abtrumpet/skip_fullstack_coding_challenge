@@ -13,10 +13,8 @@ config :pop, PopWeb.Endpoint,
   check_origin: false,
   watchers: [
     node: [
-      "node_modules/webpack/bin/webpack.js",
-      "--mode",
-      "development",
-      "--watch-options-stdin",
+      "node_modules/react-scripts/bin/react-scripts.js",
+      "start",
       cd: Path.expand("../assets", __DIR__)
     ]
   ]

@@ -41,5 +41,6 @@ defmodule PopWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
+  plug Corsica, origins: ["http://localhost:4000", "http://localhost:3000"], allow_methods: ["GET", "POST"], allow_headers: :all
   plug PopWeb.Router
 end

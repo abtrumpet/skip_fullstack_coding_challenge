@@ -30,7 +30,9 @@ function* fetchTempsSaga() {
     try {
       yield take(FETCH_TEMPS);
 
-      const { temps } = yield call(get, ["//localhost:4000/api/temperature"]);
+      const data = yield call(get, ["//localhost:4000/api/temperature"]);
+
+      const temps = data.data.temps;
 
       yield put(fetchTempsSuccess({ payload: { temps } }));
     } catch (error) {
@@ -43,7 +45,7 @@ function* fetchTempsSuccessSaga() {
   while (true) {
     const { payload: { temps } } = yield take(FETCH_TEMPS_SUCCESS);
 
-    yield put(setFTemps(List(temps)));
+    yield put(setFTemps({temps: List(temps)}));
 
     const cTemps = temps.map(t => convert(t, "celsius"));
     const kTemps = temps.map(t => convert(t, "kelvin"));
@@ -51,8 +53,8 @@ function* fetchTempsSuccessSaga() {
     /**
      * Update celsius, kelvin table here
      */
-    yield put(setCTemps(List(cTemps)));
-    yield put(setKTemps(List(kTemps)));
+    yield put(setCTemps({temps: List(cTemps)}));
+    yield put(setKTemps({temps: List(kTemps)}));
   }
 }
 
@@ -61,7 +63,7 @@ function* addTempSaga() {
     try {
       const { temp } = yield take(ADD_TEMP);
 
-      yield call(post, ["//localhost:4000/api/temperature", { temp }]);
+      yield call(post, "//localhost:4000/api/temperature", { temp });
 
       yield put(postTempSuccess({}));
 
@@ -73,8 +75,8 @@ function* addTempSaga() {
       const cTemps = temps.map(t => convert(t, "celsius"));
       const kTemps = temps.map(t => convert(t, "kelvin"));
 
-      yield put(setCTemps(List(cTemps)));
-      yield put(setKTemps(List(kTemps)));
+      yield put(setCTemps({temps: cTemps}));
+      yield put(setKTemps({temps: kTemps}));
     } catch (error) {
       yield put(postTempFailure({error}));
     }

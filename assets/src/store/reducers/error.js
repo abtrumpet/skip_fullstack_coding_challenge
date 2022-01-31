@@ -11,7 +11,7 @@ const errorRecordInitialState = {
 
 class ErrorReducerRecord extends Record(errorRecordInitialState) {}
 
-const reducer = (state = errorRecordInitialState, action) => {
+const reducer = (state = new ErrorReducerRecord(), action) => {
   switch(action.type) {
     case SET_ERROR:
       return state.set("error", action.error);

@@ -45,7 +45,7 @@ describe("fetchTempsSaga", () => {
     const saga = fetchTempsSaga();
     generatorFF(2)(saga);
 
-    expect(saga.next({ temps: [1,2,3] }).value).toEqual(
+    expect(saga.next({ data: { temps: [1,2,3] } }).value).toEqual(
       put({ type: "FETCH_TEMPS_SUCCESS", payload: { temps: [1,2,3] } }));
   });
 
@@ -54,7 +54,7 @@ describe("fetchTempsSaga", () => {
     generatorFF(2)(saga);
 
     expect(saga.next().value).toEqual(
-      put({ type: "FETCH_TEMPS_FAILURE", error: new TypeError("Cannot destructure property 'temps' of '(intermediate value)' as it is undefined.") })
+      put({ type: "FETCH_TEMPS_FAILURE", error: new TypeError("Cannot read properties of undefined (reading 'data')") })
     );
   });
 });
@@ -76,7 +76,7 @@ describe("fetchTempsSuccessSaga", () => {
     expect(saga.next({ payload: { temps: [1,2,3] }}).value)
       .toEqual(
         put(
-          setFTemps(List([1,2,3]))
+          setFTemps({ temps: List([1,2,3]) })
         )
       );
   });
@@ -87,7 +87,7 @@ describe("fetchTempsSuccessSaga", () => {
 
     expect(saga.next().value).toEqual(
       put(
-        setCTemps(List([-17, -16, -16]))
+        setCTemps({ temps: List([-17, -16, -16]) })
       )
     );
   });
@@ -98,7 +98,7 @@ describe("fetchTempsSuccessSaga", () => {
 
     expect(saga.next().value).toEqual(
       put(
-        setKTemps(List([256, 256, 258]))
+        setKTemps({ temps: List([256, 257, 258]) })
       )
     );
   });
@@ -117,7 +117,7 @@ describe("addTempSaga", () => {
     generatorFF(1)(saga);
 
     expect(saga.next({ temp: 10 }).value).toEqual(
-      call(post, ["//localhost:4000/api/temperature", { temp: 10 }]));
+      call(post, "//localhost:4000/api/temperature", { temp: 10 }));
   });
 
   it("should yield put(postTempSuccess)", () => {
@@ -144,7 +144,7 @@ describe("addTempSaga", () => {
 
     expect(saga.next(List([1,2,3])).value).toEqual(
       put(
-        setCTemps(List([-17, -16, -16]))
+        setCTemps({ temps: List([-17, -16, -16]) })
       )
     );
   });
@@ -155,7 +155,7 @@ describe("addTempSaga", () => {
 
     expect(saga.next().value).toEqual(
       put(
-        setKTemps(List([256, 256, 258]))
+        setKTemps({ temps: List([256, 257, 258]) })
       )
     );
   });
