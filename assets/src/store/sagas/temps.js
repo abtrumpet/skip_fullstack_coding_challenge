@@ -10,6 +10,7 @@ import {
   setFTemps,
   setCTemps,
   setKTemps,
+  setError,
 } from "../actions";
 
 import {
@@ -23,6 +24,7 @@ import {
   FETCH_TEMPS,
   FETCH_TEMPS_SUCCESS,
   FETCH_TEMPS_FAILURE,
+  POST_TEMP_FAILURE,
 } from "../types";
 
 function* fetchTempsSaga() {
@@ -83,8 +85,20 @@ function* addTempSaga() {
   }
 }
 
+function* failureSaga() {
+  while (true) {
+    try {
+      const { error } = yield take([FETCH_TEMPS_FAILURE, POST_TEMP_FAILURE]);
+
+      yield put(setError({ error: error?.message ?? error }));
+    } catch (error) {
+    }
+  }
+}
+
 export {
   addTempSaga,
   fetchTempsSaga,
   fetchTempsSuccessSaga,
+  failureSaga,
 }

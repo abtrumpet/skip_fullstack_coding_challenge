@@ -22,11 +22,9 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "build:tailwind": "tailwindcss build src/tailwind.css -o src/tailwind.output.css",
-    "prestart": "yarn run build:tailwind",
-    "prebuild": "yarn run build:tailwind",
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "postbuild": "mkdirp ../priv/static && cp -r ./dist/** ../priv/static/ && cp -r ./build/** ../priv/static/",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

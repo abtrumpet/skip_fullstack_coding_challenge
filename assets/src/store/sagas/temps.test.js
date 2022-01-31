@@ -8,6 +8,7 @@ import {
   // setUTemps,
   setCTemps,
   setKTemps,
+  setError,
   postTempSuccess,
   postTempFailure,
 } from "../actions";
@@ -16,6 +17,7 @@ import {
   addTempSaga,
   fetchTempsSaga,
   fetchTempsSuccessSaga,
+  failureSaga,
   postTempSaga
 } from "./temps";
 
@@ -171,4 +173,33 @@ describe("addTempSaga", () => {
   */
 
 
+});
+
+describe("failureSaga", () => {
+  it("should yield take([FETCH_TEMPS_FAILURE, POST_TEMP_FAILURE])",() => {
+    const saga = failureSaga();
+    generatorFF(0)(saga);
+
+    expect(saga.next().value).toEqual(
+      take(["FETCH_TEMPS_FAILURE", "POST_TEMP_FAILURE"])
+    );
+  });
+
+  it("should yield put(setError) 1", () => {
+    const saga = failureSaga();
+    generatorFF(1)(saga);
+
+    expect(saga.next({ error: "test error" }).value).toEqual(
+      put(setError({ error: "test error" }))
+    );
+  });
+
+  it("should yield put(setError) 2", () => {
+    const saga = failureSaga();
+    generatorFF(1)(saga);
+
+    expect(saga.next({ error: new Error("test error") }).value).toEqual(
+      put(setError({ error: "test error" }))
+    );
+  });
 });
