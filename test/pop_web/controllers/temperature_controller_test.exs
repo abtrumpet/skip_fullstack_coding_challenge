@@ -26,6 +26,12 @@ defmodule PopWeb.Controllers.TemperatureControllerTest do
     setup [:reset]
 
     test "creates temp", %{conn: conn} do
+      resp =
+        conn
+        |> post("/api/temperature", %{"temp" => 37})
+        |> json_response(200)
+
+      assert Fahrenheit.get_temps(Fahrenheit) == [37]
     end
   end
 end

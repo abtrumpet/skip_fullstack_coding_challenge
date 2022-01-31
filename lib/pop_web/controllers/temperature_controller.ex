@@ -9,7 +9,12 @@ defmodule PopWeb.Controllers.TemperatureController do
     })
   end
 
-  def create(conn, stuff) do
-
+  def create(conn, %{"temp" => temp}) do
+    Fahrenheit.put_temp(Fahrenheit, temp)
+    
+    conn
+    |> json(%{
+      temps: Fahrenheit.get_temps(Fahrenheit)
+    })
   end
 end
