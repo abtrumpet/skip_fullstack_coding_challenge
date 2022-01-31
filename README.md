@@ -9,9 +9,9 @@ From top-level dir:
 `asdf install`
 
 From `/assets/` dir:
-`yarn run build`
+`yarn && yarn run build`
 
-To run, run `mix phx.server`
+To run, run `mix deps.get && mix phx.server`
 
 
 Go to `localhost:4000` and you should see the React app. The API is at `localhost:4000/api/temperature`.
@@ -19,6 +19,11 @@ Go to `localhost:4000` and you should see the React app. The API is at `localhos
 To test:
 (backend) From top-level project folder: `mix test`
 (frontend) From `/assets` folder: `yarn test`
+
+Try to enter a non-number for the temp. It should handle errors reasonably well.
+
+
+
 
 This is a coding exercise to test your understanding of two parts of our current tech stack. These parts are React and Elixir/Phoenix. In the Javascript code, React, ReactRedux, ReactRouter have already been included. For CSS, we use [`TailwindCSS`](https://tailwindcss.com/), so we'd appreciate it if you attempted to use [`TailwindCSS`](https://tailwindcss.com/) for your styling. You do not have to use Redux or ReactRouter, but can if you want. For server code only Phoenix and Phoenix.HTML have been added.
 
