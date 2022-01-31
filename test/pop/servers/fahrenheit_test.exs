@@ -12,11 +12,17 @@ defmodule Pop.Servers.FahrenheitTest do
   end
 
   describe "reset/1" do
+    setup [:reset]
+
     test "clears values" do
       Fahrenheit.put_temp(Fahrenheit, 2)
       assert Fahrenheit.get_temps(Fahrenheit) == [2]
       Fahrenheit.reset(Fahrenheit)
       assert Fahrenheit.get_temps(Fahrenheit) == []
+    end
+    
+    defp reset(_) do
+      Fahrenheit.reset(Fahrenheit)
     end
   end
 
