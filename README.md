@@ -1,9 +1,18 @@
 # Pop
 
 ## To start my version:
-You need `docker` and `docker-compose` installed on your machine. To run:
+You need `asdf-vm` installed on your machine to guarantee you're using the correct versions of Elixir / Erlang / NodeJS.
 
-`docker-compose up -d`
+Once asdf is installed, run the following commands:
+
+From top-level dir:
+`asdf install`
+
+From `/assets/` dir:
+`yarn run build`
+
+To run, run `mix phx.server`
+
 
 Go to `localhost:4000` and you should see the React app. The API is at `localhost:4000/api/temperature`.
 
