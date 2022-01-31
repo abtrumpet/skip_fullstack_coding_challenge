@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorReducerRecord matches snapshot 1`] = `
+Immutable.Record {
+  "error": null,
+}
+`;
+
+exports[`errorRecordInitialState matches snapshot 1`] = `
+Object {
+  "error": null,
+}
+`;
