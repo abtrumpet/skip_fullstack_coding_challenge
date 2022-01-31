@@ -10,6 +10,7 @@
     "axios": "^0.25.0",
     "generator-fast-forward": "^1.0.1",
     "immutable": "^4.0.0",
+    "memoizee": "^0.4.15",
     "postcss": "^8.4.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

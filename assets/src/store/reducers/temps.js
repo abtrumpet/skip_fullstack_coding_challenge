@@ -22,7 +22,7 @@ const tempsReducerInitialState = {
 
 class TempsReducerRecord extends Record(tempsReducerInitialState){}
 
-const reducer = (state = tempsReducerInitialState, action) => {
+const reducer = (state = new TempsReducerRecord(), action) => {
   switch(action.type) {
     case FETCH_TEMPS:
       return state.set("isFetching", true);
